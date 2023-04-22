@@ -2,7 +2,9 @@ import React from "react";
 import {
   Box,
   Drawer,
+  Button,
   List,
+  Avatar,
   ListItem,
   ListItemIcon,
   ListItemText,
@@ -15,10 +17,31 @@ import {
   Audiotrack as AudiotrackIcon,
   Videocam as VideocamIcon,
 } from "@mui/icons-material";
+import { useEffect, useState } from "react";
+import firebase from "firebase/compat/app";
 
 const drawerWidth = 240;
 
 const Sidebar = () => {
+  const [user, setUser] = useState(null);
+
+  const handleLogout = async () => {
+    try {
+      await firebase.auth().signOut();
+    } catch (error) {
+      console.error("Error logging out:", error);
+    }
+  };
+
+  useEffect(() => {
+    const unsubscribe = firebase.auth().onAuthStateChanged((currentUser) => {
+      setUser(currentUser);
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, []);
   const menuItems = [
     { name: "Home", icon: <HomeIcon /> },
     { name: "Favourites", icon: <FavoriteIcon /> },
@@ -67,6 +90,31 @@ const Sidebar = () => {
           </ListItem>
         ))}
       </List>
+      {user && (
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            mt: 2,
+            mb: 2,
+          }}
+        >
+          <Avatar src={user.photoURL} sx={{ width: 56, height: 56 }} />
+          <Typography variant="subtitle1" color="text.primary" sx={{ mt: 1 }}>
+            {user.displayName}
+          </Typography>
+          <Button
+            variant="outlined"
+            color="inherit"
+            size="small"
+            sx={{ mt: 1, borderColor: "text.primary" }}
+            onClick={handleLogout}
+          >
+            Logout
+          </Button>
+        </Box>
+      )}
     </Drawer>
   );
 };

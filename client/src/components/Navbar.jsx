@@ -9,10 +9,26 @@ import {
   Button,
 } from "@mui/material";
 import { Search as SearchIcon } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
 
 const drawerWidth = 240;
 
 const Navbar = () => {
+  const navigate = useNavigate();
+
+  const handleSignUp = async () => {
+    // Replace with your preferred sign-in provider
+    const provider = new firebase.auth.GoogleAuthProvider();
+
+    try {
+      await firebase.auth().signInWithPopup(provider);
+      navigate("/");
+    } catch (error) {
+      console.error("Error logging in:", error);
+    }
+  };
   return (
     <AppBar
       position="fixed"
@@ -50,8 +66,16 @@ const Navbar = () => {
           />
         </Box>
         <Button
+          variant="text"
           color="inherit"
-          sx={{ textDecoration: "underline", textTransform: "none" }}
+          sx={{
+            mr: 1,
+            "&:hover": {
+              textDecoration: "underline",
+              backgroundColor: "transparent",
+            },
+          }}
+          onClick={handleSignUp}
         >
           Sign Up
         </Button>
