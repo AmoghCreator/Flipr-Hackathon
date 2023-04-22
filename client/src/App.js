@@ -6,6 +6,9 @@ import Signup from "./pages/Signup";
 import Audio from "./pages/Audio";
 import Video from "./pages/Video";
 import NoPage from "./pages/NoPage";
+import { Favorite } from "@mui/icons-material";
+import Favourites from "./pages/Favourites";
+import Explore from "./pages/Explore";
 
 function App() {
   return (
@@ -15,6 +18,8 @@ function App() {
         <Route path="Signup" element={<Signup />} />
         <Route path="Audio" element={<Audio />} />
         <Route path="Video" element={<Video />} />
+        <Route path="Favourites" element={<Favourites />} />
+        <Route path="Explore" element={<Explore />} />
         <Route path="*" element={<NoPage />} />
       </Routes>
     </BrowserRouter>

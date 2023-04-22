@@ -19,6 +19,7 @@ import {
 } from "@mui/icons-material";
 import { useEffect, useState } from "react";
 import firebase from "firebase/compat/app";
+import { Link } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -42,13 +43,6 @@ const Sidebar = () => {
       unsubscribe();
     };
   }, []);
-  const menuItems = [
-    { name: "Home", icon: <HomeIcon /> },
-    { name: "Favourites", icon: <FavoriteIcon /> },
-    { name: "Explore", icon: <ExploreIcon /> },
-    { name: "Audio", icon: <AudiotrackIcon /> },
-    { name: "Video", icon: <VideocamIcon /> },
-  ];
 
   return (
     <Drawer
@@ -74,21 +68,102 @@ const Sidebar = () => {
         </Typography>
       </Box>
       <List>
-        {menuItems.map((item, index) => (
-          <ListItem
-            button
-            key={index}
-            sx={{
-              color: "white",
-              bgcolor: "primary.main",
-              borderRadius: 1,
-              mb: 1,
-            }}
-          >
-            <ListItemIcon sx={{ color: "white" }}>{item.icon}</ListItemIcon>
-            <ListItemText primary={item.name} />
-          </ListItem>
-        ))}
+        <ListItem
+          button
+          component={Link}
+          to="/"
+          sx={{
+            color: "white",
+            bgcolor: "primary.main",
+            borderRadius: 1,
+            mb: 1,
+            "&.Mui-selected": {
+              bgcolor: "primary.dark",
+            },
+          }}
+        >
+          <ListItemIcon sx={{ color: "white" }}>
+            <HomeIcon />
+          </ListItemIcon>
+          <ListItemText primary="Home" />
+        </ListItem>
+        <ListItem
+          button
+          component={Link}
+          to="/Explore"
+          sx={{
+            color: "white",
+            bgcolor: "primary.main",
+            borderRadius: 1,
+            mb: 1,
+            "&.Mui-selected": {
+              bgcolor: "primary.dark",
+            },
+          }}
+        >
+          <ListItemIcon sx={{ color: "white" }}>
+            <ExploreIcon />
+          </ListItemIcon>
+          <ListItemText primary="Explore" />
+        </ListItem>
+        <ListItem
+          button
+          component={Link}
+          to="/Audio"
+          sx={{
+            color: "white",
+            bgcolor: "primary.main",
+            borderRadius: 1,
+            mb: 1,
+            "&.Mui-selected": {
+              bgcolor: "primary.dark",
+            },
+          }}
+        >
+          <ListItemIcon sx={{ color: "white" }}>
+            <AudiotrackIcon />
+          </ListItemIcon>
+          <ListItemText primary="Audio" />
+        </ListItem>
+        <ListItem
+          button
+          component={Link}
+          to="/Video"
+          sx={{
+            color: "white",
+            bgcolor: "primary.main",
+            borderRadius: 1,
+            mb: 1,
+            "&.Mui-selected": {
+              bgcolor: "primary.dark",
+            },
+          }}
+        >
+          <ListItemIcon sx={{ color: "white" }}>
+            <VideocamIcon />
+          </ListItemIcon>
+          <ListItemText primary="Video" />
+        </ListItem>
+        <ListItem
+          button
+          component={Link}
+          to="/Favourites"
+          sx={{
+            color: "white",
+            bgcolor: "primary.main",
+            borderRadius: 1,
+            mb: 1,
+            "&.Mui-selected": {
+              bgcolor: "primary.dark",
+            },
+          }}
+        >
+          <ListItemIcon sx={{ color: "white" }}>
+            <FavoriteIcon />
+          </ListItemIcon>
+          <ListItemText primary="Favourites" />
+        </ListItem>
+        {/* ... Repeat for other items: Favourites, Explore, Audio, Video */}
       </List>
       {user && (
         <Box

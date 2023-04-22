@@ -3,8 +3,9 @@ import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
 import Content from "../components/Content";
 import { Box } from "@mui/material";
+import { Favorite } from "@mui/icons-material";
 
-const Video = () => {
+const Favourites = () => {
   return (
     <div>
       <Box
@@ -21,4 +22,4 @@ const Video = () => {
   );
 };
 
-export default Video;
+export default Favourites;

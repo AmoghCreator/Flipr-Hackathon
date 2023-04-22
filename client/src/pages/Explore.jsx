@@ -4,7 +4,7 @@ import Navbar from "../components/Navbar";
 import Content from "../components/Content";
 import { Box } from "@mui/material";
 
-const Video = () => {
+const Explore = () => {
   return (
     <div>
       <Box
@@ -21,4 +21,4 @@ const Video = () => {
   );
 };
 
-export default Video;
+export default Explore;
