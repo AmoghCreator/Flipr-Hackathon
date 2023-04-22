@@ -59,7 +59,7 @@ const Navbar = () => {
             placeholder="Search…"
             sx={{
               flexGrow: 1,
-              width: "100%",
+              width: "90%",
               paddingLeft: "40px",
             }}
             inputProps={{ "aria-label": "search" }}
