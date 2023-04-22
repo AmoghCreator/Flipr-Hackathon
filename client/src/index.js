@@ -5,6 +5,16 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
+import firebaseConfig from "./firebaseConfig";
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+
+firebase.initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+
 const theme = createTheme({
   palette: {
     mode: "dark",

@@ -3,9 +3,9 @@ import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
 import Content from "../components/Content";
 import { Box } from "@mui/material";
-import Audiocontent from "../components/Audiocontent";
+import { Favorite } from "@mui/icons-material";
 
-const Audio = () => {
+const Favourites = () => {
   return (
     <div>
       <Box
@@ -17,10 +17,9 @@ const Audio = () => {
       >
         <Sidebar />
         <Navbar />
-        <Audiocontent />
       </Box>
     </div>
   );
 };
 
-export default Audio;
+export default Favourites;

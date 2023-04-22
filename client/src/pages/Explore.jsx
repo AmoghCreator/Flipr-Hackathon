@@ -3,9 +3,9 @@ import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
 import Content from "../components/Content";
 import { Box } from "@mui/material";
-import Audiocontent from "../components/Audiocontent";
+import Explorecontent from "../components/Explorecontent";
 
-const Audio = () => {
+const Explore = () => {
   return (
     <div>
       <Box
@@ -17,10 +17,10 @@ const Audio = () => {
       >
         <Sidebar />
         <Navbar />
-        <Audiocontent />
+        <Explorecontent />
       </Box>
     </div>
   );
 };
 
-export default Audio;
+export default Explore;

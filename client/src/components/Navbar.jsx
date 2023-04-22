@@ -9,10 +9,26 @@ import {
   Button,
 } from "@mui/material";
 import { Search as SearchIcon } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
 
 const drawerWidth = 240;
 
 const Navbar = () => {
+  const navigate = useNavigate();
+
+  const handleSignUp = async () => {
+    // Replace with your preferred sign-in provider
+    const provider = new firebase.auth.GoogleAuthProvider();
+
+    try {
+      await firebase.auth().signInWithPopup(provider);
+      navigate("/");
+    } catch (error) {
+      console.error("Error logging in:", error);
+    }
+  };
   return (
     <AppBar
       position="fixed"
@@ -35,7 +51,7 @@ const Navbar = () => {
           <IconButton
             color="inherit"
             edge="start"
-            sx={{ position: "absolute", left: 1 }}
+            sx={{ position: "absolute", left: 1, ml: 1, mb: 1 }}
           >
             <SearchIcon />
           </IconButton>
@@ -43,15 +59,23 @@ const Navbar = () => {
             placeholder="Search…"
             sx={{
               flexGrow: 1,
-              width: "100%",
+              width: "90%",
               paddingLeft: "40px",
             }}
             inputProps={{ "aria-label": "search" }}
           />
         </Box>
         <Button
+          variant="text"
           color="inherit"
-          sx={{ textDecoration: "underline", textTransform: "none" }}
+          sx={{
+            mr: 1,
+            "&:hover": {
+              textDecoration: "underline",
+              backgroundColor: "transparent",
+            },
+          }}
+          onClick={handleSignUp}
         >
           Sign Up
         </Button>
