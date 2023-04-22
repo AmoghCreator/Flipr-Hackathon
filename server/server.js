@@ -5,12 +5,14 @@ const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(multer().any());
 app.use(passport.initialize());
+app.use(cors());
 
 
 mongoose.connect('mongodb+srv://amoghpreneur:MongoLogin@cluster0.uz1gyvm.mongodb.net/?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
@@ -110,9 +112,10 @@ app.get('/podcasts/search', (req, res) => {
 
 // Admin panel endpoint - create a new podcast
 app.post('/admin/podcasts', (req, res) => {
-    const { name, description, category, type, speaker } = req.body;
+    const { name, description, category, type, speaker , file} = req.body;
     // Create a new podcast
-    const newPodcast = new Podcast({ name, description, category, type, speaker, file: req.file });
+    const newPodcast = new Podcast({ name, description, category, type, speaker, file});
+  console.log(newPodcast)
     newPodcast.save()
         .then(podcast => {
             // Return success message and podcast data

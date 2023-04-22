@@ -6,6 +6,8 @@ import Signup from "./pages/Signup";
 import Audio from "./pages/Audio";
 import Video from "./pages/Video";
 import NoPage from "./pages/NoPage";
+import Admin from "./pages/Admin"
+import axios from "axios";
 
 function App() {
   return (
@@ -13,6 +15,7 @@ function App() {
       <Routes>
         <Route index element={<Home />} />
         <Route path="Signup" element={<Signup />} />
+        <Route path="Admin" element={<Admin/>} />
         <Route path="Audio" element={<Audio />} />
         <Route path="Video" element={<Video />} />
         <Route path="*" element={<NoPage />} />
