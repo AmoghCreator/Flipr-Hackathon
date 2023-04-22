@@ -51,7 +51,7 @@ const Navbar = () => {
           <IconButton
             color="inherit"
             edge="start"
-            sx={{ position: "absolute", left: 1 }}
+            sx={{ position: "absolute", left: 1, ml: 1, mb: 1 }}
           >
             <SearchIcon />
           </IconButton>
