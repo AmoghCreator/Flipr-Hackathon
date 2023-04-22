@@ -3,6 +3,7 @@ import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
 import Content from "../components/Content";
 import { Box } from "@mui/material";
+import Videocontent from "../components/Videocontent";
 
 const Video = () => {
   return (
@@ -16,6 +17,7 @@ const Video = () => {
       >
         <Sidebar />
         <Navbar />
+        <Videocontent />
       </Box>
     </div>
   );

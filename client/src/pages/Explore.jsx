@@ -3,6 +3,7 @@ import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
 import Content from "../components/Content";
 import { Box } from "@mui/material";
+import Explorecontent from "../components/Explorecontent";
 
 const Explore = () => {
   return (
@@ -16,6 +17,7 @@ const Explore = () => {
       >
         <Sidebar />
         <Navbar />
+        <Explorecontent />
       </Box>
     </div>
   );
