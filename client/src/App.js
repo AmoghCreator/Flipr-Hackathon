@@ -9,8 +9,12 @@ import NoPage from "./pages/NoPage";
 import { Favorite } from "@mui/icons-material";
 import Favourites from "./pages/Favourites";
 import Explore from "./pages/Explore";
+<<<<<<< HEAD
 import Admin from "./pages/Admin"
 import axios from "axios";
+=======
+import Admin from "./pages/Admin";
+>>>>>>> 75665849dc59e9f6950fa5ee1b160aa241e57fbf
 
 function App() {
   return (
@@ -18,7 +22,7 @@ function App() {
       <Routes>
         <Route index element={<Home />} />
         <Route path="Signup" element={<Signup />} />
-        <Route path="Admin" element={<Admin/>} />
+        <Route path="Admin" element={<Admin />} />
         <Route path="Audio" element={<Audio />} />
         <Route path="Video" element={<Video />} />
         <Route path="Favourites" element={<Favourites />} />
