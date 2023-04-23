@@ -6,14 +6,11 @@ import Signup from "./pages/Signup";
 import Audio from "./pages/Audio";
 import Video from "./pages/Video";
 import NoPage from "./pages/NoPage";
-<<<<<<< HEAD
 import { Favorite } from "@mui/icons-material";
 import Favourites from "./pages/Favourites";
 import Explore from "./pages/Explore";
-=======
 import Admin from "./pages/Admin"
 import axios from "axios";
->>>>>>> 4f26afe97e2f1659d1da9ae1f87d558dfe973d1c
 
 function App() {
   return (
