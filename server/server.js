@@ -8,6 +8,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 
 const app = express();
+app.use(bodyParser());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(multer().any());
@@ -110,23 +111,49 @@ app.get('/podcasts/search', (req, res) => {
         });
 });
 
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        // Set destination folder for uploaded files
+        cb(null, __dirname + '/uploads/');
+    },
+    filename: (req, file, cb) => {
+        // Set filename as current timestamp + original file extension
+        const ext = file.originalname.split('.').pop();
+        cb(null, Date.now() + '.' + ext);
+    }
+});
+
+// Create multer upload instance
+const upload = multer({ storage });
+
 // Admin panel endpoint - create a new podcast
-app.post('/admin/podcasts', (req, res) => {
-    const { name, description, category, type, speaker , file} = req.body;
-    // Create a new podcast
-    const newPodcast = new Podcast({ name, description, category, type, speaker, file});
-  console.log(newPodcast)
+app.post('/admin/podcasts', upload.single('file'), (req, res) => {
+    const { name, description, category, type, speaker } = req.body;
+    const file = req.file;
+    // Create new podcast object
+    const newPodcast = new Podcast({
+        name,
+        description,
+        category,
+        type,
+        speaker,
+        file: {
+            filename: file.filename,
+            originalname: file.originalname
+        }
+    });
+    // Save new podcast to the database
     newPodcast.save()
-        .then(podcast => {
-            // Return success message and podcast data
-            return res.json({ message: 'Podcast created successfully', podcast });
+        .then(savedPodcast => {
+            // Return success message and saved podcast data
+            return res.json({ message: 'Podcast created successfully', podcast: savedPodcast });
         })
         .catch(err => {
             console.error('Error during podcast creation', err);
             res.status(500).json({ message: 'Internal server error' });
         });
 });
-
 
 app.get('/admin/podcasts', (req, res) => {
     // Get all podcasts from the database
